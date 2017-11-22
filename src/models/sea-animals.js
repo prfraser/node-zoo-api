@@ -1,27 +1,27 @@
 let items = [
   {
     id: 1,
-    name: 'Gorillas',
-    count: 4
+    name: 'Dolphin',
+    count: 10
   },
   {
     id: 2,
-    name: 'Zebra',
-    count: 14
+    name: 'Whale',
+    count: 2
   },
   {
     id: 3,
-    name: 'Meercats',
-    count: 26
+    name: 'Tuna',
+    count: 36
   },  
   {
     id: 4,
-    name: 'Elephants',
-    count: 5
+    name: 'Sea Lion',
+    count: 12
   },  
   {
     id: 5,
-    name: 'Dolphin',
+    name: 'Penguin',
     count: 5
   }
 ]
@@ -36,7 +36,7 @@ const all = () => items.slice().sort((a, b) => {
   else {
     return 0
   }
-})
+});
 
 const find = (id) => {
   id = parseInt(id, 10) // Convert to integer
@@ -47,6 +47,16 @@ const search = (query) => {
   query = query.toLowerCase()
   return items.filter(item => {
     return item.name.toLowerCase().indexOf(query) !== -1
+  }).slice().sort((a, b) => {
+    if (a.name < b.name) {
+      return -1
+    }
+    else if (a.name > b.name) {
+      return 1
+    }
+    else {
+      return 0
+    }
   })
 }
 
@@ -78,4 +88,4 @@ const destroy = (id) => {
   return removedItems[0] // Return removed item
 }
 
-module.exports = { all, find, search, create, findAndUpdate, destroy }
+module.exports = { all, find, create, findAndUpdate, destroy, search }
